@@ -34,6 +34,5 @@
   },
   "_source": "git://github.com/mrgamer/angular-media-player.git",
   "_target": "~0.5.8",
-  "_originalSource": "angular-media-player",
-  "_direct": true
+  "_originalSource": "angular-media-player"
 }
