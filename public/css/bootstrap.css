@@ -1101,12 +1101,12 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #337ab7;
+  color: rgba(255,255,255,0.8);
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #23527c;
+  color: rgba(255,255,255,1);
   text-decoration: underline;
 }
 a:focus {
@@ -3891,7 +3891,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eee;
+  background-color: #114144;
 }
 .nav > li.disabled > a {
   color: #777;
@@ -4396,16 +4396,16 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
+  background-color: #2ca4ab;
   border-color: #e7e7e7;
 }
 .navbar-default .navbar-brand {
-  color: #777;
+  color: rgba(255,255,255,1);
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #5e5e5e;
-  background-color: transparent;
+  color: rgba(255,255,255,1);
+  background-color: #082022;
 }
 .navbar-default .navbar-text {
   color: #777;

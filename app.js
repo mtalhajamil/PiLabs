@@ -12,20 +12,20 @@ var jsonParser = bodyParser.json();
 
 
 app.all('*', function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', req.headers.origin);
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-    
-    next();
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+
+  next();
 });
 
 app.use('/', express.static(__dirname + '/public'));
 
 // Make our db accessible to our router
 app.use(function(req,res,next){
-    req.db = db;
-    next();
+  req.db = db;
+  next();
 });
 
 /*
@@ -41,21 +41,22 @@ app.get("/", function(req,res,next){
 });
 */
 app.get("/getAyaat/:id", function(req,res,next){
-	//console.log("/");
-	//get data
+  var collection = db.get('ayatTable');
+  collection.find({ SurahNo: req.params.id },{},function(e,docs){
+    res.send(docs);
+  });
+});
 
-
-      var collection = db.get('ayatTable');
-      collection.find({ SurahNo: req.params.id },{},function(e,docs){
-
-          //console.log(docs);
-          res.send(docs);
-      });
+app.get("/getSurahNames", function(req,res,next){
+  var collection = db.get('ayatTable');
+  collection.distinct( "SurahName" ,{},function(e,docs){
+    res.send(docs);
+  });
 });
 
 app.post("/user/*",jsonParser,function(req,res){
  // Set our collection
-    var collection = db.get('messagescollection');
+ var collection = db.get('messagescollection');
 
     // Submit to the DB
     collection.insert(
@@ -63,12 +64,12 @@ app.post("/user/*",jsonParser,function(req,res){
         if (err) {
             // If it failed, return error
             res.send("There was a problem adding the information to the database.");
-        }
-        else {
+          }
+          else {
             res.sendStatus(200);
-        }
-    });
-});
+          }
+        });
+  });
 
 
 
@@ -80,6 +81,11 @@ var server = app.listen(port, function () {
   console.log('Listening at http://%s:%s', host, port);
 
 });
+
+
+
+
+
 
 
 
